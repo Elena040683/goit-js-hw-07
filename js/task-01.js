@@ -12,9 +12,12 @@
 const liItemEl = document.querySelectorAll('.item');
 console.log(`В списке ${liItemEl.length} категории.`);
 
-const titleEl = liItemEl[0].firstElementChild.textContent;
-console.log(`Категория: ${titleEl}`);
+const titleEl = document.querySelectorAll('h2');
 
-const amountLiEl = liItemEl[0].lastElementChild;
-console.log(amountLiEl);
-console.log(`Колличество элементов: ${amountLiEl.length}`);
+const showCategories = titleEl.forEach(el => {
+  console.log(
+    `Категория: ${el.textContent}. Количество элементов: ${
+      el.parentNode.querySelectorAll('li').length
+    }.`
+  );
+});
