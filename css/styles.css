@@ -1,0 +1,7 @@
+.gallery__item {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+
+  margin-bottom: 20px;
+}
