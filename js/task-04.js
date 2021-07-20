@@ -24,7 +24,6 @@ const counterValue = num.textContent;
 const onIncrementClick = () => {
   num.textContent = +num.textContent + 1;
 };
-
 const onDecrementClick = () => {
   num.textContent -= 1;
 };

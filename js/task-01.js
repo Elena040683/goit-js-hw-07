@@ -21,3 +21,19 @@ const showCategories = titleEl.forEach(el => {
     }.`
   );
 });
+
+// const ingredientsListRef = document.querySelector('#categories');
+
+// console.log(ingredientsListRef.children);
+
+// console.log(`В списке ${ingredientsListRef.children.length} категории.`);
+
+// // HTMLCollection(3) превращаем в полноценный массив
+
+// const arr = [...ingredientsListRef.children];
+// console.log(arr);
+
+// arr.forEach(item => {
+//   console.log(`Категория: ${item.children[0].textContent}`);
+//   console.log(`Количество элементов: ${item.children[1].children.length}`);
+// });

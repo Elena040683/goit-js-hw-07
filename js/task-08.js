@@ -20,40 +20,82 @@
 
 // <div id="boxes"></div>
 
-const btnRender = document.querySelector('[data-action="render"]');
-const btnDestroy = document.querySelector('[data-action="destroy]');
-const divBox = document.querySelector('#controls');
-const input = document.querySelector('input');
+const numberInput = document.querySelector('input');
+const buttonRender = document.querySelector('[data-action="render"]');
+const buttonClear = document.querySelector('[data-action="destroy"]');
+const boxGallery = document.querySelector('#boxes');
 
-const min = +input.getAttribute('min');
-const max = +input.getAttribute('max');
-const step = +input.getAttribute('step');
+// const min = +input.getAttribute('min');
+// const max = +input.getAttribute('max');
+// const step = +input.getAttribute('step');
 
-btnRender.addEventListener('click', render);
-// btnDestroy.addEventListener('click', destroy);
+let defaultSize = 30;
 
-let size = 30;
-function render() {
-  let arrDiv = [];
+// Вызывается  createBoxes(amount), потом создается массив,
+// далее запускается цикл.Цикл на каждой итерации пушит
+// в этот массив какое - то значение.И в самом конце в
+// boxGallery вставляем эту коллекцию.
 
-  if (+input.value > min && +input.value <= max) {
-    for (let i = 0; i < +input.value; i += step) {
-      const divEl = document.querySelector('div');
-      divEl.style.background = createRandom();
-      divEl.style.width = size + 'px';
-      divEl.style.height = size + 'px';
-      size += 10;
+const handleButtonRenderClick = () => {
+  // В amount будет лежать строка, поэтому переводим в число
+  const amount = +numberInput.value;
+  createBoxes(amount);
+};
 
-      arrDiv.push(divEl);
-    }
-    divBox.append(...arrDiv);
-  } else {
-    alert(`Не корректный ввод.`);
+const createBoxes = amount => {
+  const collection = [];
+  for (let i = 0; i < amount; i += 1) {
+    const div = document.createElement('div');
+    div.style.backgroundColor = createRandom();
+    div.style.width = defaultSize + 'px';
+    div.style.height = defaultSize + 'px';
+    defaultSize += 10;
+
+    collection.push(div);
   }
-}
+  boxGallery.append(...collection);
+};
 
+const handleButtonClearClick = () => {
+  boxGallery.innerHTML = '';
+  defaultSize = 30;
+  numberInput.value = 0;
+};
+
+// << 0 - это округление до целого числа
 function createRandom() {
   return `rgb(${(Math.random() * 255) << 0},${(Math.random() * 255) << 0}, ${
     (Math.random() * 255) << 0
   })`;
 }
+
+buttonRender.addEventListener('click', handleButtonRenderClick);
+buttonClear.addEventListener('click', handleButtonClearClick);
+
+// btnRender.addEventListener('click', render);
+// btnDestroy.addEventListener('click', destroy);
+
+// function render() {
+//   let arrDiv = [];
+
+//   if (+input.value > min && +input.value <= max) {
+//     for (let i = 0; i < +input.value; i += step) {
+//       const divEl = document.querySelector('div');
+//       divEl.style.background = createRandom();
+//       divEl.style.width = size + 'px';
+//       divEl.style.height = size + 'px';
+//       size += 10;
+
+//       arrDiv.push(divEl);
+//     }
+//     divBox.append(...arrDiv);
+//   } else {
+//     alert(`Не корректный ввод.`);
+//   }
+// }
+
+// function createRandom() {
+//   return `rgb(${(Math.random() * 255) << 0},${(Math.random() * 255) << 0}, ${
+//     (Math.random() * 255) << 0
+//   })`;
+// }

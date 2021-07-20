@@ -11,12 +11,27 @@ const ingredients = [
   'Приправы',
 ];
 
+// const ingredientsListRef = document.querySelector('#ingredients');
+
+// const element = ingredients.map(option => {
+//   const ingredientsListElement = document.createElement('li');
+//   ingredientsListElement.textContent = option;
+//   return ingredientsListElement;
+// });
+
+// ingredientsListRef.append(...element);
+
 const ingredientsListRef = document.querySelector('#ingredients');
 
-const element = ingredients.map(option => {
-  const ingredientsListElement = document.createElement('li');
-  ingredientsListElement.textContent = option;
-  return ingredientsListElement;
+const markup = ingredients.map(el => {
+  console.log(el);
+
+  const li = document.createElement('li');
+  console.log(li);
+
+  li.innerHTML = `<p>${el}</p>`;
+
+  return li;
 });
 
-ingredientsListRef.append(...element);
+ingredientsListRef.append(...markup);

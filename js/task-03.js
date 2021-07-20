@@ -22,14 +22,24 @@ const images = [
   },
 ];
 
-const galleryList = document.querySelector('#gallery');
+// const galleryList = document.querySelector('#gallery');
 
-const createImageElement = image => {
-  const { url, alt } = image;
+// const createImageElement = image => {
+//   const { url, alt } = image;
 
-  return `<li class="gallery__item"><img src="${url}" alt="${alt}" width=320 height=150></li>`;
-};
+//   return `<li class="gallery__item"><img src="${url}" alt="${alt}" width=320 height=150></li>`;
+// };
 
-const allImages = images.map(createImageElement);
+// const allImages = images.map(createImageElement);
 
-galleryList.insertAdjacentHTML('beforeend', allImages.join(''));
+// galleryList.insertAdjacentHTML('beforeend', allImages.join(''));
+
+const galleryRef = document.querySelector('#gallery');
+
+const createImageEl = (acc, { url, alt }) =>
+  acc +
+  `<li class="gallery__item"><img src="${url}" alt="${alt}" width=320 height=150></li>`;
+
+const markup = images.reduce(createImageEl, '');
+
+galleryRef.insertAdjacentHTML('beforeend', markup);
